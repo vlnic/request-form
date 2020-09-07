@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Vlnic\RequestForm;
 
@@ -14,12 +14,20 @@ class RequestForm extends Request
     /**
      * @var array
      */
-    protected $errors;
+    protected array $errors;
 
     /**
      * @return array
      */
     public function rules() : array
+    {
+        return [];
+    }
+
+    /**
+     * @return array
+     */
+    public function messages() : array
     {
         return [];
     }

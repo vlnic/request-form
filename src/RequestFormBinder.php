@@ -13,8 +13,19 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
  */
 class RequestFormBinder
 {
-    public function __construct()
-    {}
+    /**
+     * @var PayloadResolver
+     */
+    protected $resolver;
+
+    /**
+     * RequestFormBinder constructor.
+     * @param PayloadResolver $resolver
+     */
+    public function __construct(PayloadResolver $resolver)
+    {
+        $this->resolver = $resolver;
+    }
 
     public function bind(Request $request, callable $action) : ?Response
     {
@@ -37,13 +48,18 @@ class RequestFormBinder
         $arguments = $actionReflection->getParameters();
         foreach ($arguments as $argument) {
             if ($this->isArgumentIsSubtypeOf($argument, RequestForm::class)) {
-                $matchedArguments['requestObject'] = $argument;
+                $matchedArguments['requestForm'] = $argument;
             }
             if ($this->isArgumentIsSubtypeOf($argument, ConstraintViolationListInterface::class)) {
                 $matchedArguments['errors'] = $argument;
             }
         }
         return $matchedArguments;
+    }
+
+    protected function resolvePayload(RequestForm $requestForm, Request  $request)
+    {
+
     }
 
     /**
