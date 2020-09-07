@@ -12,6 +12,11 @@ use Symfony\Component\HttpFoundation\Response;
 class RequestForm extends Request
 {
     /**
+     * @var array
+     */
+    protected $errors;
+
+    /**
      * @return array
      */
     public function rules() : array

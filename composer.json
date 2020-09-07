@@ -1,7 +1,7 @@
 {
   "name": "vlnic/request-form",
   "description": "Custom request objects for Symfony made to make life less painful",
-  "type": "library",
+  "type": "symfony-bundle",
   "license": "MIT",
   "authors": [
     {
@@ -16,18 +16,19 @@
   },
   "autoload-dev": {
     "psr-4": {
+      "Vlnic\\RequestForm\\Tests\\": "tests",
       "Vlnic\\RequestForm\\Examples\\": "examples/"
     }
   },
   "minimum-stability": "stable",
   "require": {
     "php": ">=7.1.0",
-    "symfony/http-foundation": "^3.3|^4.0",
-    "symfony/validator": "^3.3|^4.0"
+    "symfony/http-foundation": "^5.1",
+    "symfony/validator": "^5.1"
   },
   "require-dev": {
-    "phpunit/phpunit": "^5.3",
-    "symfony/framework-bundle": "^3.3|^4.0",
-    "symfony/var-dumper": "^4.0"
+    "phpunit/phpunit": "^5.1",
+    "symfony/framework-bundle": "^5.1",
+    "symfony/var-dumper": "^5.1"
   }
 }
