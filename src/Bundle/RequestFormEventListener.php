@@ -11,7 +11,7 @@ use Vlnic\RequestForm\RequestFormBinder;
  */
 class RequestFormEventListener
 {
-    protected $binder;
+    protected RequestFormBinder $binder;
 
     /**
      * RequestFormEventListener constructor.
@@ -22,6 +22,9 @@ class RequestFormEventListener
         $this->binder = $binder;
     }
 
+    /**
+     * @param ControllerEvent $event
+     */
     public function onKernelController(ControllerEvent $event)
     {
         $errorResponse = $this->binder->bind($event->getRequest(), $event->getController());

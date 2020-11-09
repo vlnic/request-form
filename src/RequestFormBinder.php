@@ -59,7 +59,13 @@ class RequestFormBinder
 
     protected function resolvePayload(RequestForm $requestForm, Request  $request)
     {
+        $fields = array_keys($requestForm->rules());
+        foreach ((new PayloadResolver())->resolve($request) as $key => $value) {
+            if (! in_array($key, $fields, true)) {
+                continue;
+            }
 
+        }
     }
 
     /**
