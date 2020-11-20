@@ -6,6 +6,7 @@ namespace Vlnic\RequestForm;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
+use Vlnic\RequestForm\Validator\PayloadValidator;
 
 /**
  * Class RequestFormBinder
@@ -19,12 +20,18 @@ class RequestFormBinder
     protected $resolver;
 
     /**
+     * @var PayloadValidator
+     */
+    protected $validator;
+
+    /**
      * RequestFormBinder constructor.
      * @param PayloadResolver $resolver
      */
-    public function __construct(PayloadResolver $resolver)
+    public function __construct(PayloadResolver $resolver, PayloadValidator $validator)
     {
         $this->resolver = $resolver;
+        $this->validator = $validator;
     }
 
     public function bind(Request $request, callable $action) : ?Response
@@ -59,13 +66,7 @@ class RequestFormBinder
 
     protected function resolvePayload(RequestForm $requestForm, Request  $request)
     {
-        $fields = array_keys($requestForm->rules());
-        foreach ((new PayloadResolver())->resolve($request) as $key => $value) {
-            if (! in_array($key, $fields, true)) {
-                continue;
-            }
-
-        }
+        $this->validator->validate((new PayloadResolver())->resolve($request), $request);
     }
 
     /**
