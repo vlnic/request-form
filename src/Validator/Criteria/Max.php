@@ -23,7 +23,7 @@ class Max implements Criteria
      */
     public function check($value, array $params = null): bool
     {
-        $max = count($params) === 0 ? 0 : (int) $params[0];
+        $max = count($params) === 0 ? 0 : (int) array_shift($params);
         return is_numeric($value)
             ? $max >= (int) $value
             : $max >= strlen($value);

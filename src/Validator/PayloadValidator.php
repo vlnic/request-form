@@ -3,6 +3,7 @@
 namespace Vlnic\RequestForm\Validator;
 
 use Vlnic\RequestForm\RequestForm;
+use Vlnic\RequestForm\Validator\Criteria\Criteria;
 
 /**
  * Class RequestFormValidator
@@ -18,14 +19,15 @@ final class PayloadValidator
     /**
      * @var array
      */
-    private array $criterias;
+    private array $criteria;
 
     /**
      * PayloadValidator constructor.
+     * @param array $criteria
      */
-    public function __construct()
+    public function __construct(array $criteria)
     {
-
+        $this->criteria = $this->buildCriteriaMap($criteria);
     }
 
     /**
@@ -40,6 +42,20 @@ final class PayloadValidator
             }
 
         }
+    }
+
+    /**
+     * @param array $criteria
+     * @return array
+     */
+    private function buildCriteriaMap(array $criteria)
+    {
+        $map = [];
+        /** @var Criteria $criterion */
+        foreach ($criteria as $criterion) {
+            $map[$criterion->name()] = $criterion;
+        }
+        return $map;
     }
 
     /**
