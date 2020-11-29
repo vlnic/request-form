@@ -27,6 +27,7 @@ class RequestFormBinder
     /**
      * RequestFormBinder constructor.
      * @param PayloadResolver $resolver
+     * @param PayloadValidator $validator
      */
     public function __construct(PayloadResolver $resolver, PayloadValidator $validator)
     {

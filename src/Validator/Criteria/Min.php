@@ -1,0 +1,31 @@
+<?php declare(strict_types=1);
+
+namespace Vlnic\RequestForm\Validator\Criteria;
+
+/**
+ * Class Min
+ * @package Vlnic\RequestForm\Validator\Criteria
+ */
+class Min implements Criteria
+{
+    /**
+     * @return string
+     */
+    public function name(): string
+    {
+        return 'min';
+    }
+
+    /**
+     * @param $value
+     * @param array|null $params
+     * @return bool
+     */
+    public function check($value, array $params = null): bool
+    {
+        $min = is_null($params) || count($params) === 0 ? 0 : (int) $params[0];
+        return is_numeric($value)
+            ? (int) $value >= $min
+            : strlen($value) >= $min;
+    }
+}

@@ -16,6 +16,19 @@ final class PayloadValidator
     private array $errors = [];
 
     /**
+     * @var array
+     */
+    private array $criterias;
+
+    /**
+     * PayloadValidator constructor.
+     */
+    public function __construct()
+    {
+
+    }
+
+    /**
      * @param array $data
      * @param RequestForm $requestForm
      */
