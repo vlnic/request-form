@@ -11,7 +11,7 @@ class StringCriteria implements Criteria
     /**
      * @return string
      */
-    public function name(): string
+    public static function name(): string
     {
         return 'string';
     }

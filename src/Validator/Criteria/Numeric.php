@@ -11,7 +11,7 @@ class Numeric implements Criteria
     /**
      * @return string
      */
-    public function name(): string
+    public static function name(): string
     {
         return 'numeric';
     }
@@ -19,9 +19,10 @@ class Numeric implements Criteria
     /**
      * @param $value
      * @param array|null $params
+     * @param array $data
      * @return bool
      */
-    public function check($value, array $params = null): bool
+    public function check($value, array $params, array $data): bool
     {
         return is_numeric($value);
     }

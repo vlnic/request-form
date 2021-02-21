@@ -11,12 +11,13 @@ interface Criteria
     /**
      * @return string
      */
-    public function name() : string;
+    public static function name() : string;
 
     /**
      * @param $value
      * @param array|null $params
+     * @param array $data
      * @return bool
      */
-    public function check($value, array $params = null) : bool;
+    public function check($value, array $params, array $data) : bool;
 }
